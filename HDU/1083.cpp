@@ -36,7 +36,7 @@ bool dfs(int u)
         int v=edge[i].to;
         if(!used[v])
         {
-            used[v] = true;
+            used[v]=true;
             if(linker[v]==-1 || dfs(linker[v]))
             {
                 linker[v]=u;

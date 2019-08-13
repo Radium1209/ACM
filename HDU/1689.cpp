@@ -13,6 +13,7 @@ void pushup(int rt) {
 }
 
 void pushdown(int rt,int m) {
+    // 是否有lazy标记
     if (lazy[rt]) {
         lazy[rt<<1]=lazy[rt<<1|1]=lazy[rt];
         sum[rt<<1]=lazy[rt]*(m-(m>>1));
@@ -35,7 +36,9 @@ void build(int l,int r,int rt) {
 
 void update(int L,int R,int z,int l,int r,int rt) {
     if (L<=l && r<=R) {
+        // 进行lazy标记
         lazy[rt]=z;
+        // 注意长度为r-l+1
         sum[rt]=z*(r-l+1);
         return;
     }
@@ -50,7 +53,7 @@ int query(int L,int R,int l,int r,int rt) {
     if (L<=l && r<=R) {
         return sum[rt];
     }
-    pushdown(rt,r-l+1);
+    pushdown(rt,r-l+1); //与单点更新时的唯一区别
     int m=(l+r)>>1;
     int ret=0;
     if (L<=m) ret+=query(L,R,lson);

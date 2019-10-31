@@ -28,10 +28,11 @@ void addedge(int u,int v) {
     head[u]=tot++;
 }
 
+// 计算深度数组，父亲数组，重儿子
 void dfs1(int u,int pre,int d) {
-    deep[u]=d;
-    fa[u]=pre;
-    num[u]=1;
+    deep[u]=d;  // 深度数组
+    fa[u]=pre;  // 父亲数组
+    num[u]=1;   // 初始的个数为1
     for (int i=head[u];i!=-1;i=edge[i].next) {
         int v=edge[i].to;
         if (v!=pre) {
@@ -44,6 +45,7 @@ void dfs1(int u,int pre,int d) {
     }
 }
 
+// 求dfs序，优先遍历重儿子
 void getpos(int u,int sp) {
     top[u]=sp;
     p[u]=pos++;
